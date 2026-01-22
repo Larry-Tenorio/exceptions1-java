@@ -9,7 +9,7 @@ public class Account {
 	private Double withDrawLimit;
 
 	public Account() {
-
+		super();
 	}
 
 	public Account(Integer number, String holder, Double balance, Double withDrawLimit) {
@@ -35,20 +35,23 @@ public class Account {
 		return withDrawLimit;
 	}
 
-	public void deposit(Double amount) {
-		if (amount < 0) {
-			throw new DomainException("not is possible deposit value negative");
+	public void deposit(double amount) {
+		if (amount <= 0) {
+			throw new DomainException("Withdraw amount must be positive");
 		}
 		balance += amount;
 	}
 
-	public void withDraw(Double amount) {
+	public void withDraw(double amount) {
+		if (amount <= 0) {
+            throw new DomainException("Withdraw amount must be positive");
+        }
 		if (amount > withDrawLimit) {
-			throw new DomainException("the whitdraw do not to be bigger withdraw limit");
+			throw new DomainException("Withdraw amount exceeds the account limit");
 		}
-		if (amount > balance || balance <= 0) {
+		if (amount > balance) {
 			throw new DomainException(
-					"Cannot withdraw: amount exceeds balance or is invalid");
+					"Withdraw amount exceeds current balance");
 		}
 		balance -= amount;
 	}
