@@ -85,9 +85,9 @@ public class ProgramAccount {
 				}
 			}
 
-		}
-
-		catch (Exception e) {
+		} catch (DomainException e) {
+			System.out.println("error: " + e.getMessage());
+		} catch (Exception e) {
 			System.out.println("Unexpected error: " + e.getMessage());
 		} finally {
 			sc.close();
