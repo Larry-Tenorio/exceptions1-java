@@ -9,7 +9,6 @@ public class Account {
 	private Double withDrawLimit;
 
 	public Account() {
-		super();
 	}
 
 	public Account(Integer number, String holder, Double balance, Double withDrawLimit) {
